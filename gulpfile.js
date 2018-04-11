@@ -70,7 +70,9 @@ if (typeof window !== 'undefined' && window.Sweetalert2){\
 gulp.task('build:styles', () => {
   return gulp.src('src/sweetalert2.scss')
     .pipe($.sass())
-    .pipe($.autoprefixer())
+    .pipe($.autoprefixer({
+      browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
+    }))
     .pipe(gulp.dest('dist'))
     .pipe($.if(!skipMinification, $.cleanCss()))
     .pipe($.if(!skipMinification, $.rename('sweetalert2.min.css')))
